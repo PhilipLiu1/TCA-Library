@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title>Insert Book</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+    <H1 th:text="#{addBook}"></H1>
+	<form th:action="@{/saveInsertBook}" th:object="${aBook}" method="post">
+	  <fieldset>
+	  <table>
+	  <tr><td th:text="#{title}"></td><td>:</td><td><input type="text" name="title"/></td></tr>
+	  <tr><td th:text="#{author}"></td><td>:</td><td><input type="text" name="author"/></td></tr>
+	  <tr><td th:text="#{dewey}"></td><td>:</td><td><input type="text" name="dewey"/></td></tr>
+	  <tr><td th:text="#{publisher}"></td><td>:</td><td><input type="text" name="publisher"/></td></tr>
+	  <tr><td th:text="#{subject}"></td><td>:</td><td><input type="text" name="subject_heading"/></td></tr>
+	  <tr><td th:text="#{pubYear}"></td><td>:</td><td><input type="text" name="year"/></td></tr>
+	  <tr><td th:text="#{class}"></td><td>:</td><td><input type="text" name="classes"/></td></tr>
+	  <tr><td th:text="#{series}"></td><td>:</td><td><input type="text" name="series"/></td></tr>
+	  <tr><td>ISBN </td><td>:</td><td><input type="text" name="isbn"/></td></tr>
+	  <tr><td th:text="#{subject1}"></td><td>:</td><td><input type="text" name="subject_heading_1"/></td></tr>
+	  <tr><td th:text="#{remarks}"></td><td>:</td><td><input type="text" name="remarks"/></td></tr>
+ 	  <tr><td th:text="#{remarks1}"></td><td>:</td><td><input type="text" name="remarks1"/></td></tr>
+ 	  <tr><td th:text="#{entryDate}"></td><td>:</td><td><input type="text" name="entryDate"/></td></tr>
+ 	  </table>
+      <br>
+	    <p><input type="submit" value="Submit"/>
+	    <a th:href="@{/}">Cancel</a> 
+	  </fieldset>
+	</form>
+    
+    <p>
+      <a th:href="@{/showAllBooks}">Return to book list</a>
+    </p>
+    
+  </body>
+  
+</html>
