@@ -1,7 +1,30 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript">
+   $(document).ready(function() {
+       $("#locales").change(function () {
+           var selectedOption = $('#locales').val();
+              if (selectedOption !== ''){
+                   window.location.replace('locale?lang=' + selectedOption);
+              }
+            });
+        });
+/* When the user clicks on the button, toggle between hiding and showing the dropdown content */
+function showDropDown() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
 
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.getElementById("myDropdown");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
+  }
+}
+</script> 
   <head>
     <title>Update Book</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
@@ -9,6 +32,29 @@
   </head>
 
   <body th:object="${book}">
+  <div class="navbar">
+  <a href="/">Home</a>
+  <a href="#news">News</a>
+  <div class="dropdown">
+    <button class="dropbtn" onclick="showDropDown()">Management<i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content" id="myDropdown">
+      <a href="/insertBook">Add Book</a>
+      <a href="/showAllBooks">List All Books</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div>
+     <div align="right">
+ 	<span th:text="#{lang.change}"></span>:
+		<select id="locales">
+		    <option value=""></option>
+		    <option value="en" th:text="#{lang.eng}"></option>
+		    <option value="zh_CN" th:text="#{lang.zh}"></option>
+		    <option value="zh_TW" th:text="#{lang.zh}"></option>
+		</select>
+		<br>
+    </div> 
+</div>
     <H1>Update Book</H1>
 	<form th:action="@{/saveUpdateBook}" th:object="${book}" method="post">
 	  <fieldset>
@@ -18,12 +64,12 @@
 	  <tr><td th:text="#{author}"></td><td>:</td><td><input type="text" name="author" th:value="*{author}"/></td></tr>
 	  <tr><td th:text="#{dewey}"></td><td>:</td><td><input type="text" name="dewey" th:value="*{dewey}"/></td></tr>
 	  <tr><td th:text="#{publisher}"></td><td>:</td><td><input type="text" name="publisher" th:value="*{publisher}"/></td></tr>
-	  <tr><td th:text="#{subject}"></td><td>:</td><td><input type="text" name="subject_heading" th:value="*{subject_heading}"/></td></tr>
+	  <tr><td th:text="#{subject}"></td><td>:</td><td><input type="text" name="subjectHeading" th:value="*{subjectHeading}"/></td></tr>
 	  <tr><td th:text="#{pubYear}"></td><td>:</td><td><input type="text" name="year" th:value="*{year}"/></td></tr>
 	  <tr><td th:text="#{class}"></td><td>:</td><td><input type="text" name="classes" th:value="*{classes}" /></td></tr>
 	  <tr><td th:text="#{series}"></td><td>:</td><td><input type="text" name="series" th:value="*{series}"/></td></tr>
 	  <tr><td>ISBN</td><td>:</td><td><input type="text" name="isbn" th:value="*{isbn}"/></td></tr>
-	  <tr><td th:text="#{subject1}"></td><td>:</td><td><input type="text" name="subject_heading_1" th:value="*{subject_heading_1}"/></td></tr>
+	  <tr><td th:text="#{subject1}"></td><td>:</td><td><input type="text" name="subjectHeading1" th:value="*{subjectHeading1}"/></td></tr>
 	  <tr><td th:text="#{remarks}"></td><td>:</td><td><input type="text" name="remarks" th:value="*{remarks}"/></td></tr>
  	  <tr><td th:text="#{remarks1}"></td><td>:</td><td><input type="text" name="remarks1" th:value="*{remarks1}"/></td></tr>
  	  <tr><td th:text="#{entryDate}"></td><td>:</td><td><input type="text" name="entryDate" th:value="*{entryDate}"/></td></tr>

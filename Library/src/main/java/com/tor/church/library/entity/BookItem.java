@@ -42,10 +42,10 @@ public class BookItem {
 	
 	@Field(value="subject_heading")
 	@TextIndexed
-	private String subject_heading;
+	private String subjectHeading;
 	
 	@Field(value="subject_heading_1")
-	private String subject_heading_1;
+	private String subjectHeading1;
 
 	@Field(value="remarks")
 	private String remarks;
@@ -156,22 +156,6 @@ public class BookItem {
 	}
 
 
-
-
-	public String getSubject_heading() {
-		return subject_heading;
-	}
-
-
-
-
-	public void setSubject_heading(String subject_heading) {
-		this.subject_heading = subject_heading;
-	}
-
-
-
-
 	public String getYear() {
 		return year;
 	}
@@ -226,22 +210,6 @@ public class BookItem {
 	}
 
 
-
-
-	public String getSubject_heading_1() {
-		return subject_heading_1;
-	}
-
-
-
-
-	public void setSubject_heading_1(String subject_heading_1) {
-		this.subject_heading_1 = subject_heading_1;
-	}
-
-
-
-
 	public String getRemarks() {
 		return remarks;
 	}
@@ -293,5 +261,33 @@ public class BookItem {
 
 	public void setEntryDate(String entryDate) {
 		this.entryDate = entryDate;
+	}
+
+
+
+
+	public String getSubjectHeading() {
+		return subjectHeading;
+	}
+
+
+
+
+	public void setSubjectHeading(String subjectHeading) {
+		this.subjectHeading = subjectHeading;
+	}
+
+
+
+
+	public String getSubjectHeading1() {
+		return subjectHeading1;
+	}
+
+
+
+
+	public void setSubjectHeading1(String subjectHeading1) {
+		this.subjectHeading1 = subjectHeading1;
 	}
 }

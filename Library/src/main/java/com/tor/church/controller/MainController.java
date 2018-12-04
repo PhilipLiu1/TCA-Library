@@ -2,6 +2,7 @@ package com.tor.church.controller;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.tor.church.library.entity.BookItem;
 import com.tor.church.library.repository.BookRepository;
 import com.tor.church.library.repository.CustomRepository;
+import com.tor.church.library.repository.FindBookRepository;
 
 @Controller
 public class MainController {
@@ -23,6 +25,8 @@ public class MainController {
 	 private BookRepository bookRepository;
 	 @Autowired
 	 private CustomRepository custRepository;
+	 @Autowired
+	 private FindBookRepository findRepository;
 	 
 	 @RequestMapping("/")
 	    public String echoTheUsersEmailAddress(Principal principal) {
@@ -37,7 +41,7 @@ public class MainController {
 	    
 	   @RequestMapping(value = "/locale", method = RequestMethod.GET)
 	   public String getLocalePage(Model model) {
-	       return this.showAllBooks(model);
+	       return "index";
 	   }
 	 
 	 
@@ -103,6 +107,14 @@ public class MainController {
 	        return showAllBooks(model);
 	    }
 	    
+	    @RequestMapping("/borrowBook")
+	    public String borrowBook(@RequestParam (name="bookId", required=false) String bookID, Model model) {
+	  	  
+	        model.addAttribute("bookID", bookID);
+	        return "borrowBook";
+	    }
+	    
+    
 	    @RequestMapping("/deleteBook")
 	    public String deleteBook(@RequestParam (name="bookId", required=false) String bookID, Model model) {
 
@@ -125,5 +137,30 @@ public class MainController {
 	        return "booklist";
 	    }
 	    
-	
+       @RequestMapping("/searchByCriteria")
+       public String searchByCriteria(Model model, @RequestParam Map<String, String> reqParams) {
+    	   
+    	    String genCriteria = reqParams.get("criteria");
+    	    String searchAuthor = reqParams.get("searchAuthor");
+    	    String searchTitle = reqParams.get("searchTitle");
+    	    String searchSubject = reqParams.get("searchSubject");
+    	    String searchDewey = reqParams.get("searchDewey");
+    	    
+    	    if (null != searchAuthor) {
+     	    	model.addAttribute("books", findRepository.findByAuthorContaining(genCriteria));
+    	    }else if (null != searchTitle) {
+     	    	model.addAttribute("books", findRepository.findByTitleContaining(genCriteria));
+    	    }else if (null != searchSubject) {
+     	    	model.addAttribute("books", findRepository.findBySubjectHeadingContaining(genCriteria));
+    	    }else if (null != searchDewey) {
+     	    	model.addAttribute("books", findRepository.findByDeweyContaining(genCriteria));
+    	    }else {
+     	    	model.addAttribute("books", findRepository.findAll());
+    	    	
+    	    }
+
+    	    return "booklist";    	   
+       }
+	    
+	    
 }

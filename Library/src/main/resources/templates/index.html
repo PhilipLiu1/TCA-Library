@@ -1,14 +1,83 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/site.js"></script>
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript">
+   $(document).ready(function() {
+       $("#locales").change(function () {
+           var selectedOption = $('#locales').val();
+              if (selectedOption !== ''){
+                   window.location.replace('locale?lang=' + selectedOption);
+              }
+            });
+        });
+/* When the user clicks on the button, toggle between hiding and showing the dropdown content */
+function showDropDown() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.getElementById("myDropdown");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
+  }
+}
+</script> 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>TCA Library Home Page</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
 </head>
 <body>
-    <h1>Welcome to TCA Library</h1><br>
+<div class="navbar">
+  <a href="/">Home</a>
+  <a href="#news">News</a>
+  <div class="dropdown">
+    <button class="dropbtn" onclick="showDropDown()">Management<i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content" id="myDropdown">
+      <a href="/insertBook">Add Book</a>
+      <a href="/showAllBooks">List All Books</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div> 
+   <div align="right">
+ 	<span th:text="#{lang.change}"></span>:
+		<select id="locales">
+		    <option value="en" th:text="#{lang.eng}"></option>
+		    <option value="zh_CN" th:text="#{lang.zh}"></option>
+		    <option value="zh_TW" th:text="#{lang.zh}"></option>
+		</select>
+		<br>
+    </div>  
+</div>
+<h1>Welcome to TCA Library</h1><br>
+<div class="container">
+    <!-- div class="page-header">
+        <h1 th:text="#{searchBook}"></h1>
+    </div -->
+    <div align="center">
+        <form th:action="@{/searchByCriteria}" method="POST">
+            <input type="text" name="criteria" id="criteria" th:value="${criteria}" size="80"/>&nbsp&nbsp<input type="submit" value="Search" />
+            <br><br>
+            <p>Search by:  </p> 
+            <input type="radio" name="searchAuthor" id="searchAuthor">Author&nbsp&nbsp
+            <input type="radio" name="searchTitle" id="searchTitle">Title&nbsp&nbsp
+            <input type="radio" name="searchSubject" id="searchSubject">Subject&nbsp&nbsp
+            <input type="radio" name="searchDewey" id="searchDewey">Call #
+            <input type="radio" name="searchAll" id="searchAll">All
+            
+        </form>
+    </div>
+</div>    
+<br>
+<br>
     <ul>
         <li><a href='/showAllBooks'>Show All Books</a></li>
         <li><a href='/insertBook'>Add books</a></li>

@@ -46,8 +46,8 @@ public class CustomRepositoryImpl implements CustomRepository {
         update.set("remarks", book.getRemarks());
         update.set("remarks1", book.getRemarks1());
         update.set("series", book.getSeries());
-        update.set("subject_heading", book.getSubject_heading());
-        update.set("subject_heading_1", book.getSubject_heading_1());
+        update.set("subject_heading", book.getSubjectHeading());
+        update.set("subject_heading_1", book.getSubjectHeading1());
          
         BookItem result = this.mongoTemplate.findAndModify(query, update, BookItem.class);
  
@@ -85,4 +85,6 @@ public class CustomRepositoryImpl implements CustomRepository {
                                     Criteria.where("author").regex(text, "i"))
                         ), BookItem.class);
     }
+    
+   
 }

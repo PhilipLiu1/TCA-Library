@@ -9,11 +9,25 @@
        $("#locales").change(function () {
            var selectedOption = $('#locales').val();
               if (selectedOption !== ''){
-                    window.location.replace('locale?lang=' + selectedOption);
-                }
+                   window.location.replace('locale?lang=' + selectedOption);
+              }
             });
         });
-    </script>
+/* When the user clicks on the button, toggle between hiding and showing the dropdown content */
+function showDropDown() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.getElementById("myDropdown");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
+  }
+}
+</script> 
 <head>
     <meta charset="utf-8"/>
     <!-- meta http-equiv="X-UA-Compatible" content="IE=edge"/ -->
@@ -31,28 +45,31 @@
     <![endif]-->
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" th:href="@{/}">Library Home</a>
-        </div>
+<div class="navbar">
+  <a href="/">Home</a>
+  <a href="#news">News</a>
+  <div class="dropdown">
+    <button class="dropbtn" onclick="showDropDown()">Management<i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content" id="myDropdown">
+      <a href="/insertBook">Add Book</a>
+      <a href="/showAllBooks">List All Books</a>
+      <a href="#">Contact Us</a>
     </div>
-</nav>
-<br>
-<div class="container">
-    <div class="page-header">
-        <h1 th:text="#{bookList}"></h1>
-    </div>
-    <div align="right">
-     <br />
-		<span th:text="#{lang.change}"></span>:
+  </div> 
+  <div align="right">
+     <br>
+		<span class="dropbtn" th:text="#{lang.change}"></span>:
 		<select id="locales">
-		    <option value=""></option>
 		    <option value="en" th:text="#{lang.eng}"></option>
-		    <option value="zh" th:text="#{lang.zh}"></option>
+		    <option value="zh_CN" th:text="#{lang.zh}"></option>
+		    <option value="zh_TW" th:text="#{lang.zh}"></option>
 		</select>
 		<br>
     </div>
+</div>
+<h1 th:text="#{bookList}"></h1>
+
     <div align="right">
         <!--  h2>Search for books</h2 -->
         <form th:action="@{/search}" method="POST">
@@ -82,7 +99,7 @@
             <td th:text="${book.title}"></td>
             <td th:text="${book.publisher}"></td>
             <td th:text="${book.year}"></td>
-            <td th:text="${book.subject_heading}"></td>
+            <td th:text="${book.subjectHeading}"></td>
         </tr>
     </table>
 </div>
