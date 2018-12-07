@@ -4,6 +4,12 @@ div {
 	font-size: 15;
 }
 
+header {
+    color:#8000ff;
+    font-size: 15;
+    font: bold,sans-serif;
+}
+
 h1 {
     color:#400080;
 }

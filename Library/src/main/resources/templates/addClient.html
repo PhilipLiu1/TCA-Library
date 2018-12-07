@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript">
+ $(document).ready(function() {
+     $("#locales").change(function () {
+         var selectedOption = $('#locales').val();
+            if (selectedOption !== ''){
+                 window.location.replace('locale?lang=' + selectedOption);
+            }
+          });
+      });
+/* When the user clicks on the button, toggle between hiding and showing the dropdown content */
+function showDropDown() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.getElementById("myDropdown");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
+  }
+}
+</script> 
+  <head>
+    <title>Add Client</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+ <div class="navbar">
+  <a href="/">Home</a>
+  <a href="#news">News</a>
+  <div class="dropdown">
+    <button class="dropbtn" onclick="showDropDown()">Management<i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content" id="myDropdown">
+      <a href="/insertBook">Add Book</a>
+      <a href="/showAllBooks">List All Books</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div> 
+   <div align="right">
+ 	<span th:text="#{lang.change}"></span>:
+		<select id="locales">
+		    <option value="en" th:text="#{lang.eng}"></option>
+		    <option value="zh_CN" th:text="#{lang.zh}"></option>
+		    <option value="zh_TW" th:text="#{lang.zh}"></option>
+		</select>
+		<br>
+    </div>  
+</div> 
+    <H1 th:text="#{addClient}"></H1>
+	<form th:action="@{/saveAddClient}" th:object="${aClient}" method="post">
+	  <fieldset>
+	  <table>
+		  <tr><td th:text="#{firstName}"></td><td>:</td><td><input type="text" name="firstName"/></td></tr>
+		  <tr><td th:text="#{lastName}"></td><td>:</td><td><input type="text" name="lastName"/></td></tr>
+		  <tr><td th:text="#{otherName}"></td><td>:</td><td><input type="text" name="otherName"/></td></tr>
+		  <tr><td th:text="#{email}"></td><td>:</td><td><input type="text" name="email"/></td></tr>
+		  <tr><td th:text="#{cellPhone}"></td><td>:</td><td><input type="text" name="cellPhone"/></td></tr>
+		  <tr><td th:text="#{address}"></td><td>:</td><td><input type="text" name="address"/></td></tr>
+		  <tr><td th:text="#{homePhone}"></td><td>:</td><td><input type="text" name="homePhone"/></td></tr>
+		  <tr><td th:text="#{gender}"></td><td>:</td><td><input type="text" name="gender"/></td></tr>
+		  <tr><td th:text="#{status}"></td><td>:</td><td><input type="text" name="status"/></td></tr>
+		  <tr><td th:text="#{memo}"></td><td>:</td><td><input type="text" name="memo"/></td></tr>
+	  	  <tr><td th:text="#{entryDate}"></td><td>:</td><td><input type="datetime" name="entryDate"/></td></tr>
+ 	  </table>
+      <br>
+	    <p><input type="submit" value="Submit"/>
+	    <a th:href="@{/}">Cancel</a> 
+	  </fieldset>
+	</form>
+    
+    <p>
+      <a th:href="@{/showAllClients}">Return to client list</a>
+    </p>
+    
+  </body>
+  
+</html>

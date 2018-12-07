@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tor.church.library.entity.BookItem;
+import com.tor.church.library.entity.Client;
 import com.tor.church.library.repository.BookRepository;
+import com.tor.church.library.repository.ClientRepository;
 import com.tor.church.library.repository.CustomRepository;
 import com.tor.church.library.repository.FindBookRepository;
 
@@ -27,6 +29,8 @@ public class MainController {
 	 private CustomRepository custRepository;
 	 @Autowired
 	 private FindBookRepository findRepository;
+	 @Autowired
+	 private ClientRepository clientRepository;
 	 
 	 @RequestMapping("/")
 	    public String echoTheUsersEmailAddress(Principal principal) {
@@ -162,5 +166,69 @@ public class MainController {
     	    return "booklist";    	   
        }
 	    
+       /* Customer related operations */
+		@RequestMapping("/showAllClients")
+	    public String showAllClients(Model model) {
+	    	model.addAttribute("clients", clientRepository.findAll());
+	        return "clientList";
+	    }
+		
+	    @RequestMapping("/clientDetails")
+	    public String showClientDetails(@RequestParam (name="custId", required=false) String custID, Model model) {
+	 
+	        Optional<Client> aClient = this.clientRepository.findById(custID);
+
+	        Client client = new Client();
+	        if(aClient.isPresent()) {
+	        	client = aClient.get();
+	        }
+	        	        
+	        model.addAttribute("client", client);
+	        return "clientDetails";
+	    }		
+		       
+	    @RequestMapping("/addClient")
+	    public String addClient() {
+	        return "addClient";
+	    }
 	    
+	    @RequestMapping("/deleteClient")
+	    public String deleteClient(@RequestParam (name="clientId", required=false) String clientID, Model model) {
+
+	        clientRepository.deleteById(clientID);
+	        
+	        return this.showAllClients(model);
+	    }
+	    
+	    @RequestMapping("/saveAddClient")
+	    public String saveAddClient(@ModelAttribute("aClient") Client aClient, Model model) {
+	  
+	        clientRepository.insert(aClient);
+	        
+	        return this.showAllClients(model);
+	    }
+	    
+	    @RequestMapping("/updateClient")
+	    public String updateClient(@RequestParam (name="clientId", required=false) String clientID, Model model) {
+	 
+	        Optional<Client> aClient = this.clientRepository.findById(clientID);
+	       
+	        Client client = new Client();
+	        if(aClient.isPresent()) {
+	        	client = aClient.get();
+	        }
+	        
+	        model.addAttribute("client", client);
+	        return "updateClient";
+	    } 
+	    
+
+	    @RequestMapping("/saveUpdateClient")
+	    public String saveUpdateClient(@ModelAttribute("client") Client aClient, Model model) {
+	  
+	        clientRepository.save(aClient);
+	        
+	        model.addAttribute("client", aClient);
+	        return "clientDetails";
+	    }	    
 }

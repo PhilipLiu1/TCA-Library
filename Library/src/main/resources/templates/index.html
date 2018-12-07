@@ -35,6 +35,8 @@ window.onclick = function(e) {
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
 </head>
 <body>
+<header>TCA Library</header>
+<nav>Navigation Links
 <div class="navbar">
   <a href="/">Home</a>
   <a href="#news">News</a>
@@ -44,6 +46,7 @@ window.onclick = function(e) {
     <div class="dropdown-content" id="myDropdown">
       <a href="/insertBook">Add Book</a>
       <a href="/showAllBooks">List All Books</a>
+      <a href="/showAllClients">List All Clients</a>
       <a href="#">Contact Us</a>
     </div>
   </div> 
@@ -57,6 +60,8 @@ window.onclick = function(e) {
 		<br>
     </div>  
 </div>
+</nav>
+<section>
 <h1>Welcome to TCA Library</h1><br>
 <div class="container">
     <!-- div class="page-header">
@@ -75,12 +80,16 @@ window.onclick = function(e) {
             
         </form>
     </div>
-</div>    
+</div>  
+</section>  
 <br>
 <br>
+<aside >
     <ul>
         <li><a href='/showAllBooks'>Show All Books</a></li>
         <li><a href='/insertBook'>Add books</a></li>
     </ul>
+</aside>
+<footer>Contacts</footer>    
 </body>
 </html>

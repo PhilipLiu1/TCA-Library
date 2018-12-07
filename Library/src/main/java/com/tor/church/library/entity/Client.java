@@ -2,9 +2,11 @@ package com.tor.church.library.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.TextIndexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-public class Customer {
+@Document(collection="CUST_COL")
+public class Client {
 	
 	@Id
 	@Field(value="_id")
@@ -50,6 +52,10 @@ public class Customer {
 	@TextIndexed
     private String memo;
     
+	@Field(value="entryDate")
+	@TextIndexed
+	private String entryDate;
+	
 	public String getId() {
 		return id;
 	}
@@ -115,6 +121,12 @@ public class Customer {
 	}
 	public void setMemo(String memo) {
 		this.memo = memo;
+	}
+	public String getEntryDate() {
+		return entryDate;
+	}
+	public void setEntryDate(String entryDate) {
+		this.entryDate = entryDate;
 	}
 	
 }
