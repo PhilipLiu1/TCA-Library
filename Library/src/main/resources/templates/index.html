@@ -35,8 +35,10 @@ window.onclick = function(e) {
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
 </head>
 <body>
-<header>TCA Library</header>
-<nav>Navigation Links
+<header>
+<h1 class="h1">TCA Library</h1>
+</header>
+<nav>
 <div class="navbar">
   <a href="/">Home</a>
   <a href="#news">News</a>
@@ -50,8 +52,8 @@ window.onclick = function(e) {
       <a href="#">Contact Us</a>
     </div>
   </div> 
-   <div align="right">
- 	<span th:text="#{lang.change}"></span>:
+   <div align="right"><br>
+ 	<span class="navText" th:text="#{lang.change}"></span>:
 		<select id="locales">
 		    <option value="en" th:text="#{lang.eng}"></option>
 		    <option value="zh_CN" th:text="#{lang.zh}"></option>
@@ -62,34 +64,37 @@ window.onclick = function(e) {
 </div>
 </nav>
 <section>
-<h1>Welcome to TCA Library</h1><br>
-<div class="container">
-    <!-- div class="page-header">
-        <h1 th:text="#{searchBook}"></h1>
-    </div -->
-    <div align="center">
-        <form th:action="@{/searchByCriteria}" method="POST">
-            <input type="text" name="criteria" id="criteria" th:value="${criteria}" size="80"/>&nbsp&nbsp<input type="submit" value="Search" />
-            <br><br>
-            <p>Search by:  </p> 
-            <input type="radio" name="searchAuthor" id="searchAuthor">Author&nbsp&nbsp
-            <input type="radio" name="searchTitle" id="searchTitle">Title&nbsp&nbsp
-            <input type="radio" name="searchSubject" id="searchSubject">Subject&nbsp&nbsp
-            <input type="radio" name="searchDewey" id="searchDewey">Call #
-            <input type="radio" name="searchAll" id="searchAll">All
-            
-        </form>
-    </div>
-</div>  
+ <div class="main">
+   <h1>Start your search</h1><br>
+   <form th:action="@{/searchByCriteria}" method="POST">
+       <input type="text" name="criteria" id="criteria" th:value="${criteria}" size="80"/>&nbsp&nbsp<input type="submit" value="Search" />
+       <br><br>
+       <p>Search by:  </p> 
+       <input type="radio" name="searchAuthor" id="searchAuthor">Author&nbsp&nbsp
+       <input type="radio" name="searchTitle" id="searchTitle">Title&nbsp&nbsp
+       <input type="radio" name="searchSubject" id="searchSubject">Subject&nbsp&nbsp
+       <input type="radio" name="searchDewey" id="searchDewey">Call #
+       <input type="radio" name="searchAll" id="searchAll">All
+   </form>
+</div>
 </section>  
 <br>
 <br>
-<aside >
+<aside>
+<div class="quickLink">Quick Links</div>
+<div class="div1">
     <ul>
         <li><a href='/showAllBooks'>Show All Books</a></li>
         <li><a href='/insertBook'>Add books</a></li>
     </ul>
+</div>    
 </aside>
-<footer>Contacts</footer>    
+
+<footer>
+<div class="footer">
+<hr>
+<p class="footer"> The Church Assembly in Toronto</p>
+</div>
+</footer>    
 </body>
 </html>

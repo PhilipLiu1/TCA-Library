@@ -29,14 +29,11 @@ window.onclick = function(e) {
 }
 </script> 
 <head>
-    <meta charset="utf-8"/>
-    <!-- meta http-equiv="X-UA-Compatible" content="IE=edge"/ -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <title>Customers</title>
 
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
 
     <!--[if lt IE 9]>
@@ -60,7 +57,7 @@ window.onclick = function(e) {
   </div> 
   <div align="right">
      <br>
-		<span class="dropbtn" th:text="#{lang.change}"></span>:
+		<span class="navText" th:text="#{lang.change}"></span>:
 		<select id="locales">
 		    <option value="en" th:text="#{lang.eng}"></option>
 		    <option value="zh_CN" th:text="#{lang.zh}"></option>
@@ -71,9 +68,9 @@ window.onclick = function(e) {
 </div>
 <h1 th:text="#{clientList}"></h1>
 
-    <div align="right">
-       <p><a th:href="@{/addClient}">Add Client</a>&nbsp;&nbsp;</p>
-    </div>
+ <div class="div1" align="right">
+    <p><a th:href="@{/addClient}">Add Client</a>&nbsp;&nbsp;</p>
+ </div>
 <br>
 <div>
     <table class="table table-striped table-bordered">

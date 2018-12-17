@@ -1,28 +1,75 @@
-div {
-	
+.main {
+	align-self:centre;
 	color:#000080;
 	font-size: 15;
 }
 
-header {
-    color:#8000ff;
-    font-size: 15;
-    font: bold,sans-serif;
+.div1 {
+	align-content:right;
+	color:#000080;
+	font-size: 15;
+	width:60%;
 }
 
-h1 {
+.div2 {
+    float:right;
+    width: 100px;
+    height: 30px;
+    margin: 10px;
+    border: 1px transparent #73ad21;
+    background-color: #FF0000;
+    align-self: right;
+}
+
+.quickLink{
+	
+	background-color:#efeffc;
+	color: black;
+	font-size: 15;	
+	width: 70%;
+	font:bold;
+}
+
+.header {
+    color:#000080;
+    font-size: large;
+    font-style: inherit;
+    font-weight: 600;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-display: initial;
+    font: bolder;
+}
+
+.section {
+    border-block-start-width: thick;
+    padding-block-start: 50pc;
+
+}
+.aside {
+  background-color: #ddd;
+  border-block-start-width: thick;
+  border-block-end-width: medium;
+  max-block-size: 300pc;
+ 
+}
+
+.h1 {
     color:#400080;
 }
  
-h2 {
+.h2 {
     color:#FF0000;
 }
  
-table {
+.navText {
+	
+	color:#62ff62;
+} 
+.table {
     border-collapse: collapse;
 }
  
-table th, table td {
+.table th, .table td {
     padding: 5px;
 }
 
@@ -30,6 +77,14 @@ table th, table td {
     overflow: hidden;
     background-color: #0000a0;
     font-family: Arial, Helvetica, sans-serif;
+    width:70%
+}
+
+.navbar1 {
+    overflow: hidden;
+    background-color: #57af57;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0000a0;
 }
 
 .navbar a {
@@ -86,4 +141,12 @@ table th, table td {
 
 .show {
     display: block;
+}
+.footer{
+	text-align: centre;
+	width:60%;
+}
+
+.span1{
+	color: #f0f0ff;
 }

@@ -2,6 +2,8 @@ package com.tor.church.library.entity;
 
 import java.util.Date;
 
+import com.tor.church.library.entity.BookItem;
+import com.tor.church.library.entity.Client;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -13,11 +15,11 @@ public class BorrowRecord {
 	@Field(value="_id")
 	private String id;
 	
-	@Field(value="itemId")
-	private String itemId;
+	@Field(value="book")
+	private BookItem book;
 
-	@Field(value="customerId")
-    private String customerId;
+	@Field(value="client")
+    private Client client;
 
 	@Field(value="userId")
 	private String userId;
@@ -34,13 +36,13 @@ public class BorrowRecord {
 	private Date expectedReturnDate;
 
 	@Field(value="renewTimes")
-	private String renewTimes;
+	private int renewTimes;
 
 	@Field(value="returnedFlag")
 	private Boolean returnedFlag;
 
 	@Field(value="isExpired")
-	private String isExpired;
+	private boolean isExpired;
 
 	@Field(value="expiredReason")
 	private String expiredReason;
@@ -63,18 +65,7 @@ public class BorrowRecord {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getItemId() {
-		return itemId;
-	}
-	public void setItemId(String itemId) {
-		this.itemId = itemId;
-	}
-	public String getCustomerId() {
-		return customerId;
-	}
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
-	}
+
 	public String getUserId() {
 		return userId;
 	}
@@ -99,10 +90,10 @@ public class BorrowRecord {
 	public void setExpectedReturnDate(Date expectedReturnDate) {
 		this.expectedReturnDate = expectedReturnDate;
 	}
-	public String getRenewTimes() {
+	public int getRenewTimes() {
 		return renewTimes;
 	}
-	public void setRenewTimes(String renewTimes) {
+	public void setRenewTimes(int renewTimes) {
 		this.renewTimes = renewTimes;
 	}
 	public Boolean getReturnedFlag() {
@@ -111,10 +102,10 @@ public class BorrowRecord {
 	public void setReturnedFlag(Boolean returnedFlag) {
 		this.returnedFlag = returnedFlag;
 	}
-	public String getIsExpired() {
+	public boolean getIsExpired() {
 		return isExpired;
 	}
-	public void setIsExpired(String isExpired) {
+	public void setIsExpired(boolean isExpired) {
 		this.isExpired = isExpired;
 	}
 	public String getExpiredReason() {
@@ -152,6 +143,21 @@ public class BorrowRecord {
 	}
 	public void setReturnDate(Date returnDate) {
 		this.returnDate = returnDate;
+	}
+	public BookItem getBook() {
+		return book;
+	}
+	public void setBook(BookItem book) {
+		this.book = book;
+	}
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	public void setExpired(boolean isExpired) {
+		this.isExpired = isExpired;
 	}
 	
 }

@@ -56,11 +56,12 @@ window.onclick = function(e) {
     <div class="dropdown-content" id="myDropdown">
       <a href="/insertBook">Add Book</a>
       <a href="/showAllBooks">List All Books</a>
+      <a href="/showAllClients">List All Clients</a>
       <a href="#">Contact Us</a>
     </div>
   </div>
-     <div align="right">
- 	<span th:text="#{lang.change}"></span>:
+     <div align="right"><br>
+ 	<span class="navText" th:text="#{lang.change}"></span>:
 		<select id="locales">
 		    <option value=""></option>
 		    <option value="en" th:text="#{lang.eng}"></option>
@@ -71,17 +72,19 @@ window.onclick = function(e) {
     </div> 
 </div>
     <H1>Borrow Book</H1>
-	<form th:action="@{/saveBorrowBook}" th:object="${customers}" method="post">
+	<form th:action="@{/saveBorrowBook}" th:object="${clients}" method="post">
       <fieldset>     
- 	  <p>Choose a customer</p><p>
- 	  <select th:field="*{id}" id="custSelect">
- 	    <option th:each="customer : ${customers}" th:text="${customer.firstName}" th:value="${id}">
- 	  </select></p>
+      <input type="hidden" th:name="bookId" th:value="${bookID}"/>
+ 	  <p>Select a client</p>
+ 	  <select th:field="${client.id}" name="client">
+ 	    <option value="NULL"> -- </option>
+ 	    <option th:each="client : ${clients}" th:text="${client.firstName}" th:value="${client.id}">Test</option>
+ 	  </select>
 	    <table id="resulttable">
-	    
+	      <tr><td>Client Detail</td></tr>
 	    </table>
 	    <p><input type="submit" value="Submit"/>
-	    <a th:href="@{/bookDetails(bookId=${book.id})}">Cancel</a> </p>
+	    <a th:href="@{/bookDetails(bookId=${bookID})}">Cancel</a> </p>
 	  </fieldset>
 	</form>
     

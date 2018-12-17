@@ -41,11 +41,12 @@ window.onclick = function(e) {
     <div class="dropdown-content" id="myDropdown">
       <a href="/insertBook">Add Book</a>
       <a href="/showAllBooks">List All Books</a>
+      <a href="/showAllClients">List All Clients</a>
       <a href="#">Contact Us</a>
     </div>
   </div>
-     <div align="right">
- 	<span th:text="#{lang.change}"></span>:
+     <div align="right"><br>
+ 	<span class="navText" th:text="#{lang.change}"></span>:
 		<select id="locales">
 		    <option value=""></option>
 		    <option value="en" th:text="#{lang.eng}"></option>
@@ -56,6 +57,7 @@ window.onclick = function(e) {
     </div> 
 </div>
     <H1>Update Book</H1>
+    <div class="div1">
 	<form th:action="@{/saveUpdateBook}" th:object="${book}" method="post">
 	  <fieldset>
       <input type="hidden" name="id" th:value="*{id}"/>
@@ -79,7 +81,7 @@ window.onclick = function(e) {
 	    <a th:href="@{/bookDetails(bookId=${book.id})}">Cancel</a> </span></p>
 	  </fieldset>
 	</form>
-    
+    </div>
     <p>
       <a th:href="@{/showAllBooks}">Return to book list</a>
     </p>

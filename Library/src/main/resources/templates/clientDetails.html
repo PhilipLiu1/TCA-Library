@@ -41,11 +41,12 @@ window.onclick = function(e) {
     <div class="dropdown-content" id="myDropdown">
       <a href="/insertBook">Add Book</a>
       <a href="/showAllBooks">List All Books</a>
+      <a href="/showAllClients">List All Clients</a>
       <a href="#">Contact Us</a>
     </div>
   </div> 
-    <div align="right">
- 	<span th:text="#{lang.change}"></span>:
+    <div align="right"><br>
+ 	<span class="navText" th:text="#{lang.change}"></span>:
 		<select id="locales">
 		    <option value=""></option>
 		    <option value="en" th:text="#{lang.eng}"></option>

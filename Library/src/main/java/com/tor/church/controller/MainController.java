@@ -1,6 +1,9 @@
 package com.tor.church.controller;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -14,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tor.church.library.entity.BookItem;
+import com.tor.church.library.entity.BorrowRecord;
 import com.tor.church.library.entity.Client;
 import com.tor.church.library.repository.BookRepository;
+import com.tor.church.library.repository.BorrowRecordRepository;
 import com.tor.church.library.repository.ClientRepository;
 import com.tor.church.library.repository.CustomRepository;
 import com.tor.church.library.repository.FindBookRepository;
@@ -31,6 +36,8 @@ public class MainController {
 	 private FindBookRepository findRepository;
 	 @Autowired
 	 private ClientRepository clientRepository;
+	 @Autowired
+	 private BorrowRecordRepository brRepository;
 	 
 	 @RequestMapping("/")
 	    public String echoTheUsersEmailAddress(Principal principal) {
@@ -88,7 +95,6 @@ public class MainController {
 	        return "updateBook";
 	    } 
 	    
-
 	    @RequestMapping("/saveUpdateBook")
 	    public String saveUpdate(@ModelAttribute("aBook") BookItem aBook, Model model) {
 	  
@@ -111,14 +117,7 @@ public class MainController {
 	        return showAllBooks(model);
 	    }
 	    
-	    @RequestMapping("/borrowBook")
-	    public String borrowBook(@RequestParam (name="bookId", required=false) String bookID, Model model) {
-	  	  
-	        model.addAttribute("bookID", bookID);
-	        return "borrowBook";
-	    }
-	    
-    
+   
 	    @RequestMapping("/deleteBook")
 	    public String deleteBook(@RequestParam (name="bookId", required=false) String bookID, Model model) {
 
@@ -166,7 +165,7 @@ public class MainController {
     	    return "booklist";    	   
        }
 	    
-       /* Customer related operations */
+       /* Client related operations */
 		@RequestMapping("/showAllClients")
 	    public String showAllClients(Model model) {
 	    	model.addAttribute("clients", clientRepository.findAll());
@@ -230,5 +229,62 @@ public class MainController {
 	        
 	        model.addAttribute("client", aClient);
 	        return "clientDetails";
-	    }	    
+	    }	
+	    
+	    /*Borrow related operations*/
+	    @RequestMapping("/borrowBook")
+	    public String borrowBook(@RequestParam (name="bookId", required=false) String bookID, Model model) {
+	  	     
+	        model.addAttribute("bookID", bookID);
+	        model.addAttribute("clients", clientRepository.findAll());
+	        model.addAttribute("client", new Client());
+	        
+	        return "borrowBook";
+	    }	 
+	    
+	    @RequestMapping("/saveBorrowBook")
+	    public String saveBorrowBook(@RequestParam Map<String,String> allRequestParams, Model model) {
+	  	     
+	    	String bookId = allRequestParams.get("bookId");
+	    	String clientId = allRequestParams.get("id");
+	    	
+	        Optional<Client> aClient = this.clientRepository.findById(clientId);
+	    	
+	        Client client = new Client();
+	        if(aClient.isPresent()) {
+	        	client = aClient.get();
+	        }else {
+	        	System.out.println("Client not found!");
+	        }
+	        
+	        Optional<BookItem> aBook = this.bookRepository.findById(bookId);
+		       
+	        BookItem book = new BookItem();
+	        if(aBook.isPresent()) {
+	        	book = aBook.get();
+	        }else {
+	        	System.out.println("Book not found!");
+	        }
+	        	        
+	        model.addAttribute("client", client);
+	        
+	        Date today = new Date();
+	        Date returnDate = Date.from(LocalDate.now().plusDays(21).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+	        
+	        BorrowRecord br = new BorrowRecord();
+	        br.setBook(book);
+	        br.setClient(client);
+	        br.setStartDate(today);
+	        br.setRenewTimes(0);
+	        br.setIsExpired(false);
+	        br.setExpectedReturnDate(returnDate);
+	        br.setRenewTimes(0);
+	        br.setReturnedFlag(false);
+
+	        this.brRepository.save(br);
+	        
+	        return "clientDetails";
+	        
+	    }	 
+	    
 }

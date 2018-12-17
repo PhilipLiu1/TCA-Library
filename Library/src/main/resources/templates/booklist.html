@@ -29,14 +29,13 @@ window.onclick = function(e) {
 }
 </script> 
 <head>
-    <meta charset="utf-8"/>
-    <!-- meta http-equiv="X-UA-Compatible" content="IE=edge"/ -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <title>Book List</title>
 
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!-- link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css"/ -->
+    <!--  link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/ -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
 
     <!--[if lt IE 9]>
@@ -54,12 +53,13 @@ window.onclick = function(e) {
     <div class="dropdown-content" id="myDropdown">
       <a href="/insertBook">Add Book</a>
       <a href="/showAllBooks">List All Books</a>
+      <a href="/showAllClients">List All Clients</a>
       <a href="#">Contact Us</a>
     </div>
   </div> 
   <div align="right">
      <br>
-		<span class="dropbtn" th:text="#{lang.change}"></span>:
+		<span class="navText" th:text="#{lang.change}"></span>:
 		<select id="locales">
 		    <option value="en" th:text="#{lang.eng}"></option>
 		    <option value="zh_CN" th:text="#{lang.zh}"></option>
@@ -70,10 +70,9 @@ window.onclick = function(e) {
 </div>
 <h1 th:text="#{bookList}"></h1>
 
-    <div align="right">
-        <!--  h2>Search for books</h2 -->
+    <div class="div1" align="right">
         <form th:action="@{/search}" method="POST">
-            <input type="text" name="search" id="search" th:value="${searchValue}" />
+            <input type="text" name="search" id="search" size="100px" th:value="${searchValue}" />
             <input type="submit" value="Search" />
         </form>
     </div>
