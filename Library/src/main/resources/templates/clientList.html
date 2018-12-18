@@ -43,28 +43,27 @@ window.onclick = function(e) {
 </head>
 <body>
 <div class="navbar">
-  <a href="/">Home</a>
-  <a href="#news">News</a>
+  <a href="/"  th:text="#{home}">Home</a>
+  <a href="#news" th:text="#{news}">News</a>
   <div class="dropdown">
-    <button class="dropbtn" onclick="showDropDown()">Management<i class="fa fa-caret-down"></i>
+    <button class="dropbtn" onclick="showDropDown()" th:text="#{management}">Management<i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content" id="myDropdown">
-      <a href="/insertBook">Add Book</a>
-      <a href="/showAllBooks">List All Books</a>
-      <a href="/showAllCustomers">List All Clients</a>
-      <a href="#">Contact Us</a>
+      <a href="/insertBook" th:text="#{addBook}" >Add Book</a>
+      <a href="/showAllBooks" th:text="#{bookList}">List All Books</a>
+      <a href="/showAllClients"  th:text="#{clientList}">List All Clients</a>
+      <a href="#" th:text="#{contactUs}">Contact Us</a>
     </div>
   </div> 
-  <div align="right">
-     <br>
-		<span class="navText" th:text="#{lang.change}"></span>:
+   <div align="right"><br>
+ 	<span class="navText" th:text="#{lang.change}"></span>:
 		<select id="locales">
 		    <option value="en" th:text="#{lang.eng}"></option>
-		    <option value="zh_CN" th:text="#{lang.zh}"></option>
-		    <option value="zh_TW" th:text="#{lang.zh}"></option>
+		    <option value="zh_HANS" th:text="#{lang.zh}"></option>
+		    <option value="zh_HANT" th:text="#{lang.zh_t}"></option>
 		</select>
 		<br>
-    </div>
+    </div>  
 </div>
 <h1 th:text="#{clientList}"></h1>
 
