@@ -39,15 +39,17 @@ window.onclick = function(e) {
     <button class="dropbtn" onclick="showDropDown()" th:text="#{management}">Management<i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content" id="myDropdown">
-      <a href="/insertBook" th:text="#{addBook}" >Add Book</a>
       <a href="/showAllBooks" th:text="#{bookList}">List All Books</a>
       <a href="/showAllClients"  th:text="#{clientList}">List All Clients</a>
+      <a href="/insertBook" th:text="#{addBook}" >Add Book</a>
+      <a href="/addClient" th:text="#{addClient}">Add Client</a>
       <a href="#" th:text="#{contactUs}">Contact Us</a>
     </div>
   </div> 
    <div align="right"><br>
  	<span class="navText" th:text="#{lang.change}"></span>:
 		<select id="locales">
+		    <option value="" th:text="--"></option>
 		    <option value="en" th:text="#{lang.eng}"></option>
 		    <option value="zh_HANS" th:text="#{lang.zh}"></option>
 		    <option value="zh_HANT" th:text="#{lang.zh_t}"></option>
@@ -56,30 +58,31 @@ window.onclick = function(e) {
     </div>  
 </div>
     <H1 th:text="#{addBook}"></H1>
-    <div class="div1">
-	<form th:action="@{/saveInsertBook}" th:object="${aBook}" method="post">
-	  <fieldset>
-	  <table>
-	  <tr><td th:text="#{title}"></td><td>:</td><td><input type="text" name="title"/></td></tr>
-	  <tr><td th:text="#{author}"></td><td>:</td><td><input type="text" name="author"/></td></tr>
-	  <tr><td th:text="#{dewey}"></td><td>:</td><td><input type="text" name="dewey"/></td></tr>
-	  <tr><td th:text="#{publisher}"></td><td>:</td><td><input type="text" name="publisher"/></td></tr>
-	  <tr><td th:text="#{subject}"></td><td>:</td><td><input type="text" name="subjectHeading"/></td></tr>
-	  <tr><td th:text="#{pubYear}"></td><td>:</td><td><input type="text" name="year"/></td></tr>
-	  <tr><td th:text="#{class}"></td><td>:</td><td><input type="text" name="classes"/></td></tr>
-	  <tr><td th:text="#{series}"></td><td>:</td><td><input type="text" name="series"/></td></tr>
-	  <tr><td>ISBN </td><td>:</td><td><input type="text" name="isbn"/></td></tr>
-	  <tr><td th:text="#{subject1}"></td><td>:</td><td><input type="text" name="subjectHeading1"/></td></tr>
-	  <tr><td th:text="#{remarks}"></td><td>:</td><td><input type="text" name="remarks"/></td></tr>
- 	  <tr><td th:text="#{remarks1}"></td><td>:</td><td><input type="text" name="remarks1"/></td></tr>
- 	  <tr><td th:text="#{entryDate}"></td><td>:</td><td><input type="text" name="entryDate"/></td></tr>
+ <div class="div1">
+  <form th:action="@{/saveInsertBook}" th:object="${aBook}" method="post">
+	<fieldset>
+	<legend>Attributes:</legend>
+	<table class="detailtable">
+	  <tr><td th:text="#{title}"></td><td><input type="text" name="title"/></td></tr>
+	  <tr><td th:text="#{author}"></td><td><input type="text" name="author"/></td></tr>
+	  <tr><td th:text="#{dewey}"></td><td><input type="text" name="dewey"/></td></tr>
+	  <tr><td th:text="#{publisher}"></td><td><input type="text" name="publisher"/></td></tr>
+	  <tr><td th:text="#{subject}"></td><td><input type="text" name="subjectHeading"/></td></tr>
+	  <tr><td th:text="#{pubYear}"></td><td><input type="text" name="year"/></td></tr>
+	  <tr><td th:text="#{class}"></td><td><input type="text" name="classes"/></td></tr>
+	  <tr><td th:text="#{series}"></td><td><input type="text" name="series"/></td></tr>
+	  <tr><td>ISBN </td><td><input type="text" name="isbn"/></td></tr>
+	  <tr><td th:text="#{subject1}"></td><td><input type="text" name="subjectHeading1"/></td></tr>
+	  <tr><td th:text="#{remarks}"></td><td><input type="text" name="remarks"/></td></tr>
+ 	  <tr><td th:text="#{remarks1}"></td><td><input type="text" name="remarks1"/></td></tr>
+ 	  <tr><td th:text="#{entryDate}"></td><td><input type="text" name="entryDate"/></td></tr>
  	  </table>
       <br>
 	    <p><input type="submit" value="Submit"/>
 	    <a th:href="@{/}">Cancel</a> 
-	  </fieldset>
-	</form>
-    </div>
+	</fieldset>
+  </form>
+</div>
     <p>
       <a th:href="@{/showAllBooks}">Return to book list</a>
     </p>

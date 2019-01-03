@@ -39,15 +39,17 @@ window.onclick = function(e) {
     <button class="dropbtn" onclick="showDropDown()" th:text="#{management}">Management<i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content" id="myDropdown">
-      <a href="/insertBook" th:text="#{addBook}" >Add Book</a>
       <a href="/showAllBooks" th:text="#{bookList}">List All Books</a>
       <a href="/showAllClients"  th:text="#{clientList}">List All Clients</a>
+      <a href="/insertBook" th:text="#{addBook}" >Add Book</a>
+      <a href="/addClient" th:text="#{addClient}">Add Client</a>
       <a href="#" th:text="#{contactUs}">Contact Us</a>
     </div>
   </div> 
    <div align="right"><br>
  	<span class="navText" th:text="#{lang.change}"></span>:
 		<select id="locales">
+		    <option value="" th:text="--"></option>
 		    <option value="en" th:text="#{lang.eng}"></option>
 		    <option value="zh_HANS" th:text="#{lang.zh}"></option>
 		    <option value="zh_HANT" th:text="#{lang.zh_t}"></option>
@@ -59,21 +61,22 @@ window.onclick = function(e) {
     <div class="div1">
 	<form th:action="@{/saveUpdateBook}" th:object="${book}" method="post">
 	  <fieldset>
+	  <legend>Attributes:</legend>
       <input type="hidden" name="id" th:value="*{id}"/>
-	  <table  class="table table-striped table-bordered">
-	  <tr><td th:text="#{title}"></td><td>:</td><td><input type="text" name="title" th:value="*{title}" /></td></tr>
-	  <tr><td th:text="#{author}"></td><td>:</td><td><input type="text" name="author" th:value="*{author}"/></td></tr>
-	  <tr><td th:text="#{dewey}"></td><td>:</td><td><input type="text" name="dewey" th:value="*{dewey}"/></td></tr>
-	  <tr><td th:text="#{publisher}"></td><td>:</td><td><input type="text" name="publisher" th:value="*{publisher}"/></td></tr>
-	  <tr><td th:text="#{subject}"></td><td>:</td><td><input type="text" name="subjectHeading" th:value="*{subjectHeading}"/></td></tr>
-	  <tr><td th:text="#{pubYear}"></td><td>:</td><td><input type="text" name="year" th:value="*{year}"/></td></tr>
-	  <tr><td th:text="#{class}"></td><td>:</td><td><input type="text" name="classes" th:value="*{classes}" /></td></tr>
-	  <tr><td th:text="#{series}"></td><td>:</td><td><input type="text" name="series" th:value="*{series}"/></td></tr>
-	  <tr><td>ISBN</td><td>:</td><td><input type="text" name="isbn" th:value="*{isbn}"/></td></tr>
-	  <tr><td th:text="#{subject1}"></td><td>:</td><td><input type="text" name="subjectHeading1" th:value="*{subjectHeading1}"/></td></tr>
-	  <tr><td th:text="#{remarks}"></td><td>:</td><td><input type="text" name="remarks" th:value="*{remarks}"/></td></tr>
- 	  <tr><td th:text="#{remarks1}"></td><td>:</td><td><input type="text" name="remarks1" th:value="*{remarks1}"/></td></tr>
- 	  <tr><td th:text="#{entryDate}"></td><td>:</td><td><input type="text" name="entryDate" th:value="*{entryDate}"/></td></tr>
+	  <table class="detailtable">
+	  <tr><td th:text="#{title}"></td><td><input type="text" name="title" th:value="*{title}"/></td></tr>
+	  <tr><td th:text="#{author}"></td><td><input type="text" name="author" th:value="*{author}"/></td></tr>
+	  <tr><td th:text="#{dewey}"></td><td><input type="text" name="dewey" th:value="*{dewey}"/></td></tr>
+	  <tr><td th:text="#{publisher}"></td><td><input type="text" name="publisher" th:value="*{publisher}"/></td></tr>
+	  <tr><td th:text="#{subject}"></td><td><input type="text" name="subjectHeading" th:value="*{subjectHeading}"/></td></tr>
+	  <tr><td th:text="#{pubYear}"></td><td><input type="text" name="year" th:value="*{year}"/></td></tr>
+	  <tr><td th:text="#{class}"></td><td><input type="text" name="classes" th:value="*{classes}" /></td></tr>
+	  <tr><td th:text="#{series}"></td><td><input type="text" name="series" th:value="*{series}"/></td></tr>
+	  <tr><td>ISBN</td><td><input type="text" name="isbn" th:value="*{isbn}"/></td></tr>
+	  <tr><td th:text="#{subject1}"></td><td><input type="text" name="subjectHeading1" th:value="*{subjectHeading1}"/></td></tr>
+	  <tr><td th:text="#{remarks}"></td><td><input type="text" name="remarks" th:value="*{remarks}"/></td></tr>
+ 	  <tr><td th:text="#{remarks1}"></td><td><input type="text" name="remarks1" th:value="*{remarks1}"/></td></tr>
+ 	  <tr><td th:text="#{entryDate}"></td><td><input type="text" name="entryDate" th:value="*{entryDate}"/></td></tr>
  	  </table>
 	    
 	    <p><input type="submit" value="Submit"/>

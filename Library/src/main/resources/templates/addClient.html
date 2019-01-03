@@ -39,15 +39,17 @@ window.onclick = function(e) {
     <button class="dropbtn" onclick="showDropDown()" th:text="#{management}">Management<i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content" id="myDropdown">
-      <a href="/insertBook" th:text="#{addBook}" >Add Book</a>
       <a href="/showAllBooks" th:text="#{bookList}">List All Books</a>
       <a href="/showAllClients"  th:text="#{clientList}">List All Clients</a>
+      <a href="/insertBook" th:text="#{addBook}" >Add Book</a>
+      <a href="/addClient" th:text="#{addClient}">Add Client</a>
       <a href="#" th:text="#{contactUs}">Contact Us</a>
     </div>
   </div> 
    <div align="right"><br>
  	<span class="navText" th:text="#{lang.change}"></span>:
 		<select id="locales">
+		    <option value="" th:text="--"></option>
 		    <option value="en" th:text="#{lang.eng}"></option>
 		    <option value="zh_HANS" th:text="#{lang.zh}"></option>
 		    <option value="zh_HANT" th:text="#{lang.zh_t}"></option>
@@ -59,18 +61,18 @@ window.onclick = function(e) {
    <div class="div1">
 	<form th:action="@{/saveAddClient}" th:object="${aClient}" method="post">
 	  <fieldset>
-	  <table>
-		  <tr><td th:text="#{firstName}"></td><td>:</td><td><input type="text" name="firstName"/></td></tr>
-		  <tr><td th:text="#{lastName}"></td><td>:</td><td><input type="text" name="lastName"/></td></tr>
-		  <tr><td th:text="#{otherName}"></td><td>:</td><td><input type="text" name="otherName"/></td></tr>
-		  <tr><td th:text="#{email}"></td><td>:</td><td><input type="text" name="email"/></td></tr>
-		  <tr><td th:text="#{cellPhone}"></td><td>:</td><td><input type="text" name="cellPhone"/></td></tr>
-		  <tr><td th:text="#{address}"></td><td>:</td><td><input type="text" name="address"/></td></tr>
-		  <tr><td th:text="#{homePhone}"></td><td>:</td><td><input type="text" name="homePhone"/></td></tr>
-		  <tr><td th:text="#{gender}"></td><td>:</td><td><input type="text" name="gender"/></td></tr>
-		  <tr><td th:text="#{status}"></td><td>:</td><td><input type="text" name="status"/></td></tr>
-		  <tr><td th:text="#{memo}"></td><td>:</td><td><input type="text" name="memo"/></td></tr>
-	  	  <tr><td th:text="#{entryDate}"></td><td>:</td><td><input type="datetime" name="entryDate"/></td></tr>
+	  <table class="detailtable">
+		  <tr><td th:text="#{firstName}"></td><td><input type="text" name="firstName"/></td></tr>
+		  <tr><td th:text="#{lastName}"></td><td><input type="text" name="lastName"/></td></tr>
+		  <tr><td th:text="#{otherName}"></td><td><input type="text" name="otherName"/></td></tr>
+		  <tr><td th:text="#{email}"></td><td><input type="text" name="email"/></td></tr>
+		  <tr><td th:text="#{cellPhone}"></td><td><input type="text" name="cellPhone"/></td></tr>
+		  <tr><td th:text="#{address}"></td><td><input type="text" name="address"/></td></tr>
+		  <tr><td th:text="#{homePhone}"></td><td><input type="text" name="homePhone"/></td></tr>
+		  <tr><td th:text="#{gender}"></td><td><input type="text" name="gender"/></td></tr>
+		  <tr><td th:text="#{status}"></td><td><input type="text" name="status"/></td></tr>
+		  <tr><td th:text="#{memo}"></td><td><input type="text" name="memo"/></td></tr>
+	  	  <tr><td th:text="#{entryDate}"></td><td><input type="datetime" name="entryDate"/></td></tr>
  	  </table>
       <br>
 	    <p><input type="submit" value="Submit"/>

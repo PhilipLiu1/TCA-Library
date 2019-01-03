@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -38,6 +39,9 @@ public class MainController {
 	 private ClientRepository clientRepository;
 	 @Autowired
 	 private BorrowRecordRepository brRepository;
+	 
+	 @Value("${BORROW_DAYS}")
+	 private int borrowDays;
 	 
 	 @RequestMapping("/")
 	    public String echoTheUsersEmailAddress(Principal principal) {
@@ -269,7 +273,7 @@ public class MainController {
 	        model.addAttribute("client", client);
 	        
 	        Date today = new Date();
-	        Date returnDate = Date.from(LocalDate.now().plusDays(21).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+	        Date returnDate = Date.from(LocalDate.now().plusDays(this.borrowDays).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 	        
 	        BorrowRecord br = new BorrowRecord();
 	        br.setBook(book);

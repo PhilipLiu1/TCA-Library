@@ -2,23 +2,61 @@
 	align-self:centre;
 	color:#000080;
 	font-size: 15;
+	padding: 30px;
+	display:block;
+	margin-left: 50px;
 }
 
-.div1 {
+.div1 li {
 	align-content:right;
 	color:#000080;
 	font-size: 15;
 	width:60%;
+	padding: 10px;
+	margin-left: 50px;
 }
 
-.div2 {
-    float:right;
-    width: 100px;
+.search {
+	align-content:right;
+	color:#000080;
+	font-size: 15;
+	width:60%;
+	padding: 10px;
+	margin-left: 500px;
+}
+
+.divright{
+    float:left;
+    width: 70%;
     height: 30px;
-    margin: 10px;
-    border: 1px transparent #73ad21;
-    background-color: #FF0000;
-    align-self: right;
+    margin: 0px;
+    border: none;
+    background-color: #b6e3fe;
+    align-content: right;
+    clear: both;
+}
+
+.divright a{
+    float:right;
+    font-weight:bold; 
+
+}
+div.left{
+    position: relative;
+    left: auto;
+    width: 70%;
+    margin-top: 10px;
+    border: none;
+    background-color: #b6e3fe;
+    align-content: right;
+}
+div.right{
+    position: relative;
+    width: 70%;
+    margin: 0px;
+    border: none;
+    background-color: #b6e3fe;
+    align-content: right;
 }
 
 .quickLink{
@@ -55,6 +93,8 @@
 
 .h1 {
     color:#400080;
+    margin-left: 10px;
+    padding: 10px;
 }
  
 .h2 {
@@ -65,18 +105,59 @@
 	
 	color:#62ff62;
 } 
-.table {
+.detailtable {
     border-collapse: collapse;
+    width: 70%;
+    border-style: solid;
+    border-color: #0000a0
 }
  
-.table th {
+.detailtable th {
     padding: 5px;
     text-decoration: underline;
+    border-bottom: thin;
 }
 
-.table td {
+.detailtable td {
     padding: 5px;
+    border-bottom-style: groove;
+    border-bottom-width: medium;
+    border-style: ridge;
 
+}
+
+.detailtable input {
+	font:bold;
+	font-size:medium;
+    padding: 5px;
+    width: 90%;
+    background-color: #dfdfff;
+}
+
+.booklist {
+	border:medium;
+	border-style: solid;
+	border-width: medium;
+    border-collapse: collapse;
+    border-color: #0000a0;
+    clear:both;
+}
+ 
+.booklist th {
+    padding: 10px;
+    text-align: left;
+ 	border-style: solid;
+	border-width: thin;
+    text-decoration: underline;
+    border-color: #0000a0
+}
+
+.booklist td {
+ 	border-style: solid;
+	border-width: thin;
+	text-align: left;
+    padding: 10px;
+    border-color: #0000a0
 }
 
 .navbar {
@@ -155,4 +236,17 @@
 
 .span1{
 	color: #f0f0ff;
+}
+
+fieldset { 
+  display: block;
+  margin-left: 20px;
+  margin-right: 2px;
+  padding-top: 10px;
+  padding-bottom: 0.625em;
+  padding-left: 20px;
+  padding-right: 0.75em;
+  border: 1px groove (internal value);
+  border-color: #0000a0;
+  width: 65%
 }

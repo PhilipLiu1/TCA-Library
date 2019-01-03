@@ -46,16 +46,18 @@ window.onclick = function(e) {
     <button class="dropbtn" onclick="showDropDown()" th:text="#{management}">Management<i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content" id="myDropdown">
-      <a href="/insertBook" th:text="#{addBook}" >Add Book</a>
       <a href="/showAllBooks" th:text="#{bookList}">List All Books</a>
       <a href="/showAllClients"  th:text="#{clientList}">List All Clients</a>
+      <a href="/insertBook" th:text="#{addBook}" >Add Book</a>
+      <a href="/addClient" th:text="#{addClient}">Add Client</a>
       <a href="#" th:text="#{contactUs}">Contact Us</a>
     </div>
   </div> 
    <div align="right"><br>
  	<span class="navText" th:text="#{lang.change}"></span>:
 		<select id="locales">
-		    <option value="en" th:text="#{lang.eng}"></option>
+		    <option value="" th:text="--"></option>
+		    <option value="en_CA" th:text="#{lang.eng}"></option>
 		    <option value="zh_HANS" th:text="#{lang.zh}"></option>
 		    <option value="zh_HANT" th:text="#{lang.zh_t}"></option>
 		</select>
