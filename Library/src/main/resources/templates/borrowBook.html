@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/site.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
        $("#locales").change(function () {
@@ -92,7 +95,16 @@ window.onclick = function(e) {
     <p>
       <a th:href="@{/showAllBooks}">Return to book list</a>
     </p>
-    
+<br>
+<br>
+<br>
+<footer>
+<div class="footer">
+<hr>
+<p align="center" class="footer"><a href="https://tca.to/" th:text="#{churchName}"></a></p>
+
+</div>
+</footer>       
   </body>
   
 </html>

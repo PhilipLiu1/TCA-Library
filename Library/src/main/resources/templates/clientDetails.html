@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/site.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
        $("#locales").change(function () {
@@ -61,25 +64,36 @@ window.onclick = function(e) {
 
     <div class="divright"><a th:href="@{/updateClient(clientId=*{id})}">Update Client</a></div>
 
-	  <table class="detailtable">
- 	  <tr><td th:text="#{firstName}"></td><td>:</td><td th:text="*{firstName}"></td></tr>
-	  <tr><td th:text="#{lastName}"></td><td>:</td><td th:text="*{lastName}"></td></tr>
-	  <tr><td th:text="#{otherName}"></td><td>:</td><td th:text="*{otherName}"></td></tr>
-	  <tr><td th:text="#{email}"></td><td>:</td><td th:text="*{email}"></td></tr>
-	  <tr><td th:text="#{cellPhone}"></td><td>:</td><td th:text="*{cellPhone}"></td></tr>
-	  <tr><td th:text="#{address}"></td><td>:</td><td th:text="*{address}"></td></tr>
-	  <tr><td th:text="#{homePhone}"></td><td>:</td><td th:text="*{homePhone}"></td></tr>
-	  <tr><td th:text="#{gender}"></td><td>:</td><td th:text="*{gender}"></td></tr>
-	  <tr><td th:text="#{status}"></td><td>:</td><td th:text="*{status}"></td></tr>
-	  <tr><td th:text="#{memo}"></td><td>:</td><td th:text="*{memo}"></td></tr>
-  	  <tr><td th:text="#{entryDate}"></td><td>:</td><td th:text="*{entryDate}"></td></tr>
- 	  </table>
+	<table class="detailtable">
+ 	  <tr><td th:text="#{firstName}"></td><td th:text="*{firstName}"></td></tr>
+	  <tr><td th:text="#{lastName}"></td><td th:text="*{lastName}"></td></tr>
+	  <tr><td th:text="#{otherName}"></td><td th:text="*{otherName}"></td></tr>
+	  <tr><td th:text="#{email}"></td><td th:text="*{email}"></td></tr>
+	  <tr><td th:text="#{cellPhone}"></td><td th:text="*{cellPhone}"></td></tr>
+	  <tr><td th:text="#{address}"></td><td th:text="*{address}"></td></tr>
+	  <tr><td th:text="#{homePhone}"></td><td th:text="*{homePhone}"></td></tr>
+	  <tr><td th:text="#{gender}"></td><td th:text="*{gender}"></td></tr>
+	  <tr><td th:text="#{status}"></td><td th:text="*{status}"></td></tr>
+	  <tr><td th:text="#{memo}"></td><td th:text="*{memo}"></td></tr>
+  	  <tr><td th:text="#{entryDate}"></td><td th:text="*{entryDate}"></td></tr>
+ 	</table>
     <p>
       <a th:href="@{/showAllClients}">Return to client list</a>
     </p>
     <p>
       <a th:href="@{/deleteClient(clientId=*{id})}" onclick="return confirm('Are you sure you want to delete this client?')">Delete Client</a>
-    </p>    
+    </p>   
+ 
+ <br>
+<br>
+<br>
+<footer>
+<div class="footer">
+<hr>
+<p align="center" class="footer"><a href="https://tca.to/" th:text="#{churchName}"></a></p>
+
+</div>
+</footer>       
   </body>
   
 </html>

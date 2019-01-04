@@ -1,15 +1,19 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/site.js"></script>
 
-<html xmlns:th="http://www.thymeleaf.org">
 <script type="text/javascript">
- $(document).ready(function() {
-     $("#locales").change(function () {
-         var selectedOption = $('#locales').val();
-            if (selectedOption !== ''){
-                 window.location.replace('locale?lang=' + selectedOption);
-            }
-          });
-      });
+$(document).ready(function() {
+    $("#locales").change(function () {
+        var selectedOption = $('#locales').val();
+           if (selectedOption !== ''){
+                window.location.replace('locale?lang=' + selectedOption);
+           }
+         });
+     });
 /* When the user clicks on the button, toggle between hiding and showing the dropdown content */
 function showDropDown() {
     document.getElementById("myDropdown").classList.toggle("show");
@@ -46,11 +50,11 @@ window.onclick = function(e) {
       <a href="#" th:text="#{contactUs}">Contact Us</a>
     </div>
   </div> 
-   <div align="right"><br>
+    <div align="right"><br>
  	<span class="navText" th:text="#{lang.change}"></span>:
 		<select id="locales">
 		    <option value="" th:text="--"></option>
-		    <option value="en" th:text="#{lang.eng}"></option>
+		    <option value="en_CA" th:text="#{lang.eng}"></option>
 		    <option value="zh_HANS" th:text="#{lang.zh}"></option>
 		    <option value="zh_HANT" th:text="#{lang.zh_t}"></option>
 		</select>
@@ -86,7 +90,16 @@ window.onclick = function(e) {
     <p>
       <a th:href="@{/showAllBooks}">Return to book list</a>
     </p>
-    
+ <br>
+<br>
+<br>
+<footer>
+<div class="footer">
+<hr>
+<p align="center" class="footer"><a href="https://tca.to/" th:text="#{churchName}"></a></p>
+
+</div>
+</footer>      
   </body>
   
 </html>

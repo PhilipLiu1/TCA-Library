@@ -45,17 +45,20 @@ public class MainController {
 	 
 	 @RequestMapping("/")
 	    public String echoTheUsersEmailAddress(Principal principal) {
-		 
+/*		 
 		 if(null != principal) {
 	        System.out.println("The login user email address is: " + principal.getName());
 	        return "index";
 		 }else {
 			 return "redirect:login";
 		 }
+*/
+		 return "index";
 	    }
 	    
-	   @RequestMapping(value = "/locale", method = RequestMethod.GET)
+	   @RequestMapping(value = "/locale")
 	   public String getLocalePage(Model model) {
+		   
 	       return "index";
 	   }
 	 
@@ -64,8 +67,6 @@ public class MainController {
 	    public String showAllBooks(Model model) {
 	 
 	        List<BookItem> books = this.bookRepository.findAll();
-	 
-        
 	        model.addAttribute("books", books);
 	        return "booklist";
 	    }
@@ -80,8 +81,7 @@ public class MainController {
 	        	book = aBook.get();
 	        }
 	        
-        
-	        model.addAttribute("book", book);
+ 	        model.addAttribute("book", book);
 	        return "bookDetails";
 	    }
 

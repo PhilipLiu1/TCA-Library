@@ -18,19 +18,6 @@ public class CustomRepositoryImpl implements CustomRepository {
 	@Autowired
 	MongoTemplate mongoTemplate;
 	
-/*	@Override
-	public String getMaxBookId() {
-        Query query = new Query();
-        query.with(new Sort(Sort.Direction.DESC, "_id"));
-        query.limit(1);
-        BookItem maxObject = mongoTemplate.findOne(query, BookItem.class);
-        if (maxObject == null) {
-            return "Not found";
-        }
-        return maxObject.getId();
-       // return 0L;
-	}*/
-
 	@Override
 	public BookItem updateBook(BookItem book) {
 		
