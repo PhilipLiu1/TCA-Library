@@ -34,7 +34,7 @@ window.onclick = function(e) {
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
 
-<body th:object="${client}">
+<body th:object="${brw}">
 <div class="navbar">
   <a href="/"  th:text="#{home}">Home</a>
   <a href="#news" th:text="#{news}">News</a>
@@ -60,28 +60,32 @@ window.onclick = function(e) {
 		<br>
     </div>  
 </div>
-    <h1 th:text="#{clientDetails}"></h1>
+    <h1 th:text="#{borrowDetails}"></h1>
 
-    <div class="divright"><a th:href="@{/updateClient(clientId=*{id})}">Update Client</a></div>
+    <div class="divright"><a th:href="@{/updateBorrow(brwId=*{id})}">Update Borrow Record</a></div>
 
 	<table class="detailtable">
- 	  <tr><td th:text="#{firstName}"></td><td th:text="*{firstName}"></td></tr>
-	  <tr><td th:text="#{lastName}"></td><td th:text="*{lastName}"></td></tr>
-	  <tr><td th:text="#{otherName}"></td><td th:text="*{otherName}"></td></tr>
-	  <tr><td th:text="#{email}"></td><td th:text="*{email}"></td></tr>
-	  <tr><td th:text="#{cellPhone}"></td><td th:text="*{cellPhone}"></td></tr>
-	  <tr><td th:text="#{address}"></td><td th:text="*{address}"></td></tr>
-	  <tr><td th:text="#{homePhone}"></td><td th:text="*{homePhone}"></td></tr>
-	  <tr><td th:text="#{gender}"></td><td th:text="*{gender}"></td></tr>
-	  <tr><td th:text="#{status}"></td><td th:text="*{status}"></td></tr>
-	  <tr><td th:text="#{memo}"></td><td th:text="*{memo}"></td></tr>
-  	  <tr><td th:text="#{entryDate}"></td><td th:text="*{entryDate}"></td></tr>
+ 	  <tr><td th:text="#{firstName}" width="30%"></td><td th:text="*{client.firstName}"></td></tr>
+	  <tr><td th:text="#{lastName}"></td><td th:text="*{client.lastName}"></td></tr>
+	  <tr><td th:text="#{title}"></td><td th:text="*{book.title}"></td></tr>
+	  <tr><td th:text="#{startDate}"></td><td th:text="*{startDate}"></td></tr>
+	  <tr><td th:text="#{renewDate}"></td><td th:text="*{renewDate}"></td></tr>
+	  <tr><td th:text="#{expectedReturnDate}"></td><td th:text="*{expectedReturnDate}"></td></tr>
+	  <tr><td th:text="#{returnDate}"></td><td th:text="*{returnDate}"></td></tr>
+	  <tr><td th:text="#{renewTimes}"></td><td th:text="*{renewTimes}"></td></tr>
+	  <tr><td th:text="#{returnedFlag}"></td><td th:text="*{returnedFlag}"></td></tr>
+  	  <tr><td th:text="#{isExpired}"></td><td th:text="*{isExpired}"></td></tr>
+  	  <tr><td th:text="#{expiredReason}"></td><td th:text="*{expiredReason}"></td></tr>
+  	  <tr><td th:text="#{communication}"></td><td th:text="*{communication}"></td></tr>
+  	  <tr><td th:text="#{damagedFlag}"></td><td th:text="*{damagedFlag}"></td></tr>
+  	  <tr><td th:text="#{damageDesc}"></td><td th:text="*{damageDesc}"></td></tr>
+  	  <tr><td th:text="#{memo}"></td><td th:text="*{memo}"></td></tr>
  	</table>
     <p>
-      <a th:href="@{/showAllClients}">Return to client list</a>
+      <a th:href="@{/showAllBorrows}">Return to borrow list</a>
     </p>
     <p>
-      <a th:href="@{/deleteClient(clientId=*{id})}" onclick="return confirm('Are you sure you want to delete this client?')">Delete Client</a>
+      <a th:href="@{/deleteBorrow(brwId=*{id})}" onclick="return confirm('Are you sure you want to delete this borrow record?')">Delete Borrow Record</a>
     </p>   
  
  <br>

@@ -2,11 +2,10 @@ package com.tor.church.library.entity;
 
 import java.util.Date;
 
-import com.tor.church.library.entity.BookItem;
-import com.tor.church.library.entity.Client;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Document(collection="BRW_COL")
 public class BorrowRecord {
@@ -24,14 +23,19 @@ public class BorrowRecord {
 	@Field(value="userId")
 	private String userId;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Field(value="startDate")
 	private Date startDate;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Field(value="renewDate")
 	private Date renewDate;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Field(value="returnDate")
 	private Date returnDate;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Field(value="expectedReturnDate")
 	private Date expectedReturnDate;
 

@@ -28,13 +28,13 @@ window.onclick = function(e) {
   }
 }
 </script> 
-  <head>
-    <title>Client Details</title>
+<head>
+    <title>Update Borrow</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  </head>
+</head>
 
-<body th:object="${client}">
+<body th:object="${brw}">
 <div class="navbar">
   <a href="/"  th:text="#{home}">Home</a>
   <a href="#news" th:text="#{news}">News</a>
@@ -60,28 +60,39 @@ window.onclick = function(e) {
 		<br>
     </div>  
 </div>
-    <h1 th:text="#{clientDetails}"></h1>
-
-    <div class="divright"><a th:href="@{/updateClient(clientId=*{id})}">Update Client</a></div>
-
-	<table class="detailtable">
- 	  <tr><td th:text="#{firstName}"></td><td th:text="*{firstName}"></td></tr>
-	  <tr><td th:text="#{lastName}"></td><td th:text="*{lastName}"></td></tr>
-	  <tr><td th:text="#{otherName}"></td><td th:text="*{otherName}"></td></tr>
-	  <tr><td th:text="#{email}"></td><td th:text="*{email}"></td></tr>
-	  <tr><td th:text="#{cellPhone}"></td><td th:text="*{cellPhone}"></td></tr>
-	  <tr><td th:text="#{address}"></td><td th:text="*{address}"></td></tr>
-	  <tr><td th:text="#{homePhone}"></td><td th:text="*{homePhone}"></td></tr>
-	  <tr><td th:text="#{gender}"></td><td th:text="*{gender}"></td></tr>
-	  <tr><td th:text="#{status}"></td><td th:text="*{status}"></td></tr>
-	  <tr><td th:text="#{memo}"></td><td th:text="*{memo}"></td></tr>
-  	  <tr><td th:text="#{entryDate}"></td><td th:text="*{entryDate}"></td></tr>
+    <H1>Update Borrow Record</H1>
+    <div class="div1">
+	<form th:action="@{/saveUpdateBorrow}" th:object="${brw}" method="post">
+	  <fieldset>
+	  <legend>Attributes:</legend>
+      <input type="hidden" name="id" th:value="*{id}"/>
+	  <table class="detailtable">
+ 	  <tr><td th:text="#{firstName}" width="30%"></td><td th:text="*{client.firstName}"></td></tr>
+	  <tr><td th:text="#{lastName}"></td><td th:text="*{client.lastName}"></td></tr>
+	  <tr><td th:text="#{title}"></td><td th:text="*{book.title}"></td></tr>
+	  <tr><td th:text="#{startDate}"></td><td><input type="date" name="startDate" th:value="*{startDate}" /></td></tr>
+	  <tr><td th:text="#{renewDate}"></td><td><input type="date" name="renewDate" th:value="*{renewDate}"/></td></tr>
+	  <tr><td th:text="#{expectedReturnDate}"></td><td><input type="date" name="expectedReturnDate" th:value="*{expectedReturnDate}"/></td></tr>
+	  <tr><td th:text="#{returnDate}"></td><td><input type="date" name="returnDate" th:value="*{returnDate}"/></td></tr>
+	  <tr><td th:text="#{renewTimes}"></td><td><input type="text" name="renewTimes" th:value="*{renewTimes}"/></td></tr>
+	  <tr><td th:text="#{returnedFlag}"></td><td><input type="text" name="returnedFlag" th:value="*{returnedFlag}"/></td></tr>
+  	  <tr><td th:text="#{isExpired}"></td><td><input type="text" name="isExpired" th:value="*{isExpired}"/></td></tr>
+  	  <tr><td th:text="#{expiredReason}"></td><td><input type="text" name="expiredReason" th:value="*{expiredReason}"/></td></tr>
+  	  <tr><td th:text="#{communication}"></td><td><input type="text" name="communication" th:value="*{communication}"/></td></tr>
+  	  <tr><td th:text="#{damagedFlag}"></td><td><input type="text" name="damagedFlag" th:value="*{damagedFlag}"/></td></tr>
+  	  <tr><td th:text="#{damageDesc}"></td><td><input type="text" name="damageDesc" th:value="*{damageDesc}"/></td></tr>
+  	  <tr><td th:text="#{memo}"></td><td><input type="text" name="memo" th:value="*{memo}"/></td></tr>
  	</table>
+       <p><input type="submit" value="Submit"/>
+	    <a th:href="@{/borrowDetails(brwId=${brw.id})}">Cancel</a> </span></p>
+	  </fieldset>	
+	</form>
+    </div> 	
     <p>
-      <a th:href="@{/showAllClients}">Return to client list</a>
+      <a th:href="@{/showAllBorrows}">Return to borrow list</a>
     </p>
     <p>
-      <a th:href="@{/deleteClient(clientId=*{id})}" onclick="return confirm('Are you sure you want to delete this client?')">Delete Client</a>
+      <a th:href="@{/deleteBorrow(brwId=*{id})}" onclick="return confirm('Are you sure you want to delete this borrow record?')">Delete Borrow Record</a>
     </p>   
  
  <br>

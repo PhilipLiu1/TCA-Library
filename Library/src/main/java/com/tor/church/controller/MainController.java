@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tor.church.library.entity.BookItem;
@@ -61,14 +60,15 @@ public class MainController {
 		   
 	       return "index";
 	   }
-	 
-	 
+
+	   
+/*Book related operations */	   
 	    @RequestMapping("/showAllBooks")
 	    public String showAllBooks(Model model) {
 	 
 	        List<BookItem> books = this.bookRepository.findAll();
 	        model.addAttribute("books", books);
-	        return "booklist";
+	        return "bookList";
 	    }
 	    
 	    @RequestMapping("/bookDetails")
@@ -141,7 +141,7 @@ public class MainController {
 	    public String search(Model model, @RequestParam String search) {
 	    	model.addAttribute("books", custRepository.searchBooks(search));
 	    	model.addAttribute("searchValue", search);
-	        return "booklist";
+	        return "bookList";
 	    }
 	    
        @RequestMapping("/searchByCriteria")
@@ -166,10 +166,10 @@ public class MainController {
     	    	
     	    }
 
-    	    return "booklist";    	   
+    	    return "bookList";    	   
        }
 	    
-       /* Client related operations */
+/* Client related operations */
 		@RequestMapping("/showAllClients")
 	    public String showAllClients(Model model) {
 	    	model.addAttribute("clients", clientRepository.findAll());
@@ -235,7 +235,7 @@ public class MainController {
 	        return "clientDetails";
 	    }	
 	    
-	    /*Borrow related operations*/
+/*Borrow related operations*/
 	    @RequestMapping("/borrowBook")
 	    public String borrowBook(@RequestParam (name="bookId", required=false) String bookID, Model model) {
 	  	     
@@ -245,6 +245,22 @@ public class MainController {
 	        
 	        return "borrowBook";
 	    }	 
+	    
+		 
+	    @RequestMapping("/showAllBorrows")
+	    public String showAllBorrows(Model model) {
+	 
+	        List<BorrowRecord> brws = this.brRepository.findAll();
+	        brws.forEach(brw ->{
+	        	BookItem book = brw.getBook();
+	        	Client client = brw.getClient();
+	        	System.out.println("Book Id: "+ book.getId());
+	        	System.out.println("Client Id:" + client.getId());
+	        });
+	        
+	        model.addAttribute("brws", brws);
+	        return "borrowList";
+	    }	    
 	    
 	    @RequestMapping("/saveBorrowBook")
 	    public String saveBorrowBook(@RequestParam Map<String,String> allRequestParams, Model model) {
@@ -287,8 +303,44 @@ public class MainController {
 
 	        this.brRepository.save(br);
 	        
-	        return "clientDetails";
+	        return this.showAllBorrows(model);
 	        
 	    }	 
 	    
+	    @RequestMapping("/borrowDetails")
+	    public String showBorrowDetails(@RequestParam (name="brwId", required=false) String brwID, Model model) {
+	 
+	        Optional<BorrowRecord> aBrw = this.brRepository.findById(brwID);
+
+	        BorrowRecord brw = new BorrowRecord();
+	        if(aBrw.isPresent()) {
+	        	brw = aBrw.get();
+	        }
+	        	        
+	        model.addAttribute("brw", brw);
+	        return "borrowDetails";
+	    }
+	    
+	    @RequestMapping("/updateBorrow")
+	    public String updateBorrow(@RequestParam (name="brwId", required=false) String brwID, Model model) {
+	 
+	        Optional<BorrowRecord> aBrw = this.brRepository.findById(brwID);
+
+	        BorrowRecord brw = new BorrowRecord();
+	        if(aBrw.isPresent()) {
+	        	brw = aBrw.get();
+	        }
+	        	        
+	        model.addAttribute("brw", brw);
+	        return "updateBorrow";
+	    } 	    
+	    
+	    @RequestMapping("/saveUpdateBorrow")
+	    public String saveUpdateBorrow(@ModelAttribute("brw") BorrowRecord aBrw, Model model) {
+	  
+	        brRepository.save(aBrw);
+	        
+	        model.addAttribute("brw", aBrw);
+	        return "borrowDetails";
+	    }		    
 }

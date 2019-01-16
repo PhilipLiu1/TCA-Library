@@ -1,10 +1,9 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="js/site.js"></script>
-
 <script type="text/javascript">
    $(document).ready(function() {
        $("#locales").change(function () {
@@ -31,14 +30,20 @@ window.onclick = function(e) {
 </script> 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>TCA Library Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>Borrow List</title>
+
+    <!-- link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css"/ -->
+    <!--  link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/ -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-<header>
-<h1 class="h1" th:text="#{tca}"></h1>
-</header>
-<nav>
 <div class="navbar">
   <a href="/"  th:text="#{home}">Home</a>
   <a href="#news" th:text="#{news}">News</a>
@@ -48,7 +53,6 @@ window.onclick = function(e) {
     <div class="dropdown-content" id="myDropdown">
       <a href="/showAllBooks" th:text="#{bookList}">List All Books</a>
       <a href="/showAllClients"  th:text="#{clientList}">List All Clients</a>
-      <a href="/showAllBorrows"  th:text="#{borrowList}">List All Borrows</a>
       <a href="/insertBook" th:text="#{addBook}" >Add Book</a>
       <a href="/addClient" th:text="#{addClient}">Add Client</a>
       <a href="#" th:text="#{contactUs}">Contact Us</a>
@@ -58,41 +62,45 @@ window.onclick = function(e) {
  	<span class="navText" th:text="#{lang.change}"></span>:
 		<select id="locales">
 		    <option value="" th:text="--"></option>
-		    <option value="en_CA" th:text="#{lang.eng}"></option>
+		    <option value="en" th:text="#{lang.eng}"></option>
 		    <option value="zh_HANS" th:text="#{lang.zh}"></option>
 		    <option value="zh_HANT" th:text="#{lang.zh_t}"></option>
 		</select>
 		<br>
     </div>  
 </div>
-</nav>
-<br>
-<section>
- <div class="main">
-   <h1  th:text="#{startSearch}">Start your search</h1><br>
-   <form th:action="@{/searchByCriteria}" method="POST">
-       <input type="text" name="criteria" id="criteria" th:value="${criteria}" size="80"/>&nbsp&nbsp<input type="submit" value="Search" />
-       <br><br>
-       <p>Search by:  </p> 
-       <input type="radio" name="searchAuthor" id="searchAuthor"  th:text="#{author}">&nbsp&nbsp
-       <input type="radio" name="searchTitle" id="searchTitle"  th:text="#{title}">&nbsp&nbsp
-       <input type="radio" name="searchSubject" id="searchSubject"  th:text="#{subject}">&nbsp&nbsp
-       <input type="radio" name="searchDewey" id="searchDewey"  th:text="#{dewey}">
-       <input type="radio" name="searchAll" id="searchAll"  th:text="#{all}">
-   </form>
+<h1 th:text="#{bookList}"></h1>
+<div class="search">
+     <form th:action="@{/search}" method="POST">
+         <input type="text" name="search" id="search" size="100px" th:value="${searchValue}" />
+         <input type="submit" value="Search" />
+     </form>
 </div>
-</section>  
 <br>
-<br>
-<aside>
-<div class="quickLink"><h1  th:text="#{quickLinks}">Quick Links</h1> </div>
 <div class="div1">
-    <ul>
-        <li><a href='/showAllBooks'  th:text="#{showAllBooks}">Show All Books</a></li>
-        <li><a href='/insertBook'  th:text="#{addBook}">Add books</a></li>
-    </ul>
-</div>    
-</aside>
+    <table class="booklist">
+        <tr>
+            <th th:text="#{borrowId}"></th>
+            <th th:text="#{borrower}"></th>
+            <th th:text="#{title}"></th>
+            <th th:text="#{startDate}"></th>
+            <th th:text="#{renewDate}"></th>
+            <th th:text="#{returnDate}"></th>
+            <th th:text="#{renewTimes}"></th>
+            <th th:text="#{returnedFlag}"></th>
+        </tr>
+        <tr th:each="brw: ${brws}">
+            <td><a th:text="${brw.id}" th:href="@{/borrowDetails(brwId=${brw.id})}"></a></td>
+            <td><a th:text="${brw.client.firstName} +' '+ ${brw.client.lastName}" th:href="@{/clientDetails(custId=${brw.client.id})}"></a></td>
+            <td width="35%"><a th:text="${brw.book.title}" th:href="@{/bookDetails(bookId=${brw.book.id})}"></a></td>
+            <td th:text="${brw.startDate}"></td>
+            <td th:text="${brw.renewDate}"></td>
+            <td th:text="${brw.returnDate}"></td>
+            <td th:text="${brw.renewTimes}"></td>
+            <td th:text="${brw.returnedFlag}"></td>            
+        </tr>
+    </table>
+</div>
 <br>
 <br>
 <br>
@@ -102,6 +110,7 @@ window.onclick = function(e) {
 <p align="center" class="footer"><a href="https://tca.to/" th:text="#{churchName}"></a></p>
 
 </div>
-</footer>    
+</footer>   
+
 </body>
 </html>
