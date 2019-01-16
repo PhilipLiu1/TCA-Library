@@ -336,8 +336,32 @@ public class MainController {
 	    } 	    
 	    
 	    @RequestMapping("/saveUpdateBorrow")
-	    public String saveUpdateBorrow(@ModelAttribute("brw") BorrowRecord aBrw, Model model) {
+	    public String saveUpdateBorrow(@RequestParam Map<String,String> allRequestParams, @ModelAttribute("aBrw") BorrowRecord aBrw,  Model model) {
 	  
+	    	String bookId = allRequestParams.get("bookId");
+	    	String clientId = allRequestParams.get("clientId");
+	    	
+	        Optional<Client> aClient = this.clientRepository.findById(clientId);
+	    	
+	        Client client = new Client();
+	        if(aClient.isPresent()) {
+	        	client = aClient.get();
+	        }else {
+	        	System.out.println("Client not found!");
+	        }
+	        
+	        Optional<BookItem> aBook = this.bookRepository.findById(bookId);
+		       
+	        BookItem book = new BookItem();
+	        if(aBook.isPresent()) {
+	        	book = aBook.get();
+	        }else {
+	        	System.out.println("Book not found!");
+	        }
+	        
+	        aBrw.setBook(book);
+	        aBrw.setClient(client);
+	        
 	        brRepository.save(aBrw);
 	        
 	        model.addAttribute("brw", aBrw);
