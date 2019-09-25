@@ -367,4 +367,12 @@ public class MainController {
 	        model.addAttribute("brw", aBrw);
 	        return "borrowDetails";
 	    }		    
+	    
+	    @RequestMapping("/deleteBorrow")
+	    public String deleteBorrow(@RequestParam (name="brwId", required=false) String brwID, Model model) {
+
+	        brRepository.deleteById(brwID);
+	        
+	        return this.showAllBorrows(model);
+	    }
 }
